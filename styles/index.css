@@ -1,5 +1,19 @@
 body{
-  margin-top: 20px;
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: hsl(0, 0%, 10%);
+}
+
+#RedirectButtons{
+  background-color: rgb(39, 37, 38);
+  padding: 40px;
+  width: 620px;
+  margin-left: auto;
+  margin-right: auto;
+  
 }
 
 a{
