@@ -1,0 +1,83 @@
+button{
+  padding-left: 16px;
+  padding-right: 16px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+.amazonlink{
+  color:rgb(26, 175, 216);
+}
+
+.amazonlink:hover{
+  color:rgb(157, 198, 33);
+}
+
+.price{
+  color:rgb(42, 214, 111);
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.cartbutton{
+  color:black;
+  font-size: 16px;
+  font-weight: 500;
+  background-color: rgb(197, 194, 65);
+  border:none;
+  border-radius: 16px;
+  cursor:pointer;
+  transition: opacity 0.5s, background-color 0.5s;
+}
+
+.cartbutton:hover{
+  opacity: 0.6;
+  background-color: rgb(169, 167, 8);
+}
+.buynowbutton{
+  color:black;
+  font-size: 16px;
+  font-weight: 500;
+  background-color: rgb(198, 149, 52);
+  border:none;
+  border-radius: 16px;
+  cursor:pointer;
+  transition: opacity 0.15s, color 0.15s;
+}
+.buynowbutton:hover{
+  opacity: 0.8;
+}
+.buynowbutton:active{
+  opacity: 0.4;
+  color: white;
+}
+
+.Amount{
+  margin-top: 40px;
+  font-weight: bold;
+  font-size: 28px;
+  margin-bottom: 8px;
+}
+.currency{
+  margin-left: 5px;
+  font-size: 14px;
+  color: grey;
+  font-weight: 600;
+}
+.CurrentPrice{
+  margin-top: 0px;
+   color: rgb(28, 223, 28);
+   font-weight: 500;
+   margin-bottom: 8px;
+}
+.AfterPrice{
+  color:grey;
+  margin-top: 0px;
+  font-weight: 400;
+}
+
+.Percentage-Change{
+  color:red;
+}
+
+

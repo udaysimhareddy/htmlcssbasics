@@ -1,0 +1,657 @@
+@keyframes aFade {
+  0% {
+    opacity: 0;
+    transform: scale(.85);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+@keyframes aFadeSlide {
+  0% {
+    opacity: 0;
+    transform: translateY(4%);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes aDraw {
+  0% {
+    stroke-dashoffset: 1200;
+    stroke-width: 0;
+    stroke-opacity: .5;
+    fill-opacity: 0;
+  }
+  70% {
+    fill-opacity: 0;
+  }
+  80% {
+    stroke-dashoffset: 0;
+    stroke-width: 25;
+    stroke-opacity: 1;
+  }
+  81% {
+    fill-opacity: 1;
+  }
+}
+@font-face {
+  font-family: 'OpenSans';
+  src: url(webwb/pxfont-OpenSans-Regular.woff2) format("woff2"), 
+       url(webwb/pxfont-OpenSans-Regular.woff) format("woff");
+  font-weight: 400;
+  font-style: normal;
+  font-display: fallback;
+}
+@font-face {
+  font-family: 'OpenSans';
+  src: url(webwb/pxfont-OpenSans-Bold.woff2) format("woff2"), 
+       url(webwb/pxfont-OpenSans-Bold.woff) format("woff");
+  font-weight: 700;
+  font-style: normal;
+  font-display: fallback;
+}
+
+*, :after, :before {
+  box-sizing: border-box;
+}
+
+html, main {
+  height: 100%;
+  padding: 0;
+  margin: 0;
+}
+
+.noFX {animation:none !important; transition:none !important}
+
+a:focus{text-decoration:underline !important}
+
+.field > input, body {
+  padding: 0 14px;
+  margin: 0;
+}
+
+body, form {
+  text-align: center;
+}
+
+body {
+  height: 100%;
+  background-repeat: no-repeat;
+  background-color: #1f2555;
+  background-image: linear-gradient(-25deg, #125876 0%, #1f2555 30%);
+  background-attachment: fixed;
+  -webkit-tap-highlight-color: transparent;
+  color: #fff;
+}
+body, button, input {
+  font: 16px/1.5 'OpenSans','Open Sans',sans-serif;
+  font-style: normal;
+}
+
+.content-container, form {
+  flex-direction: column;
+  display: flex;
+}
+
+form {
+  height: 100%;
+  padding:0 7px;
+}
+.logo-container,footer{ 
+  flex:none;
+}
+
+#login {
+  flex: 1 0 auto;
+  width: 100%;
+  max-width: 480px;
+  margin: 0 auto;
+}
+
+body, input {
+  font-weight: 400;
+}
+
+.content-container {
+  flex-wrap: nowrap;
+  flex: 1 0 auto; 
+  padding-top: 44px;
+}
+
+.content-container > #login > *:not(footer){
+    animation: aFadeSlide .4s ease-out both .5s; /* Preventing weird page load issues with animated footer */
+}
+
+.field {
+  display: flex;
+  text-align: left;
+  background-color: #fff;
+  overflow: hidden;
+  border-radius: 2px;
+  line-height: 44px;
+}
+
+.field, .field > * {
+  height: 44px;
+}
+
+.field > input {
+  text-align: left;
+  color: #1f2555;
+  background: 0 0;
+  flex: 1;
+  border: 0;
+  border-left: 2px solid #fff;
+  transition: border .25s ease-out;
+  border-radius: 0 2px 2px 0;
+}
+
+input:focus {
+  outline: 0;
+  border-color: #08c7c7;
+}
+
+/* style for removing eye-icon in edge browsers */
+input[type="password"]::-ms-reveal{
+  display: none;
+}
+
+::-webkit-input-placeholder {
+  color: #767676;
+  font-size: 13px;
+  padding-top:3px;
+  vertical-align: middle;
+}
+
+::-moz-placeholder {
+  color: #767676;
+  font-size: 13px;
+}
+
+:-ms-input-placeholder {
+  color: #767676;
+  font-size: 13px;
+}
+
+input:-webkit-autofill {
+  -webkit-box-shadow: 0 0 0 1000px #fff inset;
+}
+
+#version {
+  color: #fff;
+  font-size: 14px;
+  text-shadow: none;
+  font-weight: 400;
+  margin: 0 0 10px;
+}
+
+#login, footer {
+  text-align: center;
+  position: relative;
+}
+
+.field.passwordChange, .field.user {
+  margin: 4px 0;
+}
+
+.field.passwordStrength {
+  background: #d6f1fb;
+  border-color: #9fd5ea;
+}
+
+#spnLoginFrgtPwd.loginButton,
+.field.password.solo,
+.field.passwordChangeFail,
+.field.passwordChangeOK {
+  margin-top: 4px;
+}
+
+#passwordStrengthLabel {
+  font: 14px 'OpenSans','Open Sans',sans-serif;
+  color: #fff;
+  margin-top: 5px;
+  margin-left: 10px;
+}
+
+#error, #info {
+  margin: 4px 0;
+  color: #a6020d;
+  background: #ffd9db;
+  padding: 14px 0;
+  font-size: .9em;
+  border-radius: 2px;
+  border: solid 1px transparent;
+}
+
+.label {
+  font: 14px 'OpenSans','Open Sans',sans-serif;
+  color: #95a5a6;
+}
+
+.field > label {
+  background: rgba(31, 37, 85, 0.07);
+  color: rgba(31, 37, 85, 0.75);
+  fill: currentColor;
+  display: flex;
+  align-items: center;
+  flex-basis: 44px;
+  max-width: 44px;
+  padding: 10px;
+}
+
+.field > label > svg {
+  height: 100%;
+  display: inline-block;
+}
+footer{
+  padding-top:5vh;  /* CL */
+}
+
+footer > p {
+  color: rgba(255, 255, 255, 0.75);
+  font-weight: 400;
+  font-size: 11px;
+  padding: 14px 0;
+  text-transform: uppercase;
+  margin: 0;
+}
+
+button::-moz-focus-inner {
+  border: 0;
+}
+
+button {
+  background: #128297;
+  font-size: 18px;
+  font-weight: 700;
+  color: #fff;
+  border: 0;
+  border-radius: 4px;
+  cursor: pointer;
+  width: 100%;
+  padding: 10px 0;
+  margin-top: 16px;
+  outline: 0;
+  position: relative;
+  transition: all 0.25s ease-out;
+}
+
+button:not(.linkButton):focus, button:not(.linkButton):hover {
+  -webkit-tap-highlight-color: #28c1b9;
+  -webkit-transform: translateY(-2px);
+  background: #28c1b9;
+  box-shadow: 0 3.5px 14px rgba(0, 0, 0, 0.3);
+  outline: 0;
+  text-shadow: 0 0 7px #179595;
+  transform: translateY(-2px);
+}
+
+button:not(.linkButton):active {
+  -webkit-tap-highlight-color: #10685a;
+  background: #10685a;
+}
+
+a,.linkButton {
+  background: 0 0;
+  color: #fff;
+  font-weight: 400;
+  margin-top: 14px;
+  opacity: .85;
+  text-decoration: none;
+}
+
+.linkButton:active, .linkButton:focus, .linkButton:hover {
+  -webkit-tap-highlight-color: none;
+  background: 0 0;
+  color:#fff;
+  opacity: 1;
+  outline: 0;
+  text-decoration: underline !important;
+}
+
+#spnLoginFrgtPwd {
+  font-size: 16px;
+  cursor: pointer;
+}
+
+#spnLoginFrgtPwd.loginButton:before {
+  content: "";
+}
+
+#do_not_submit_row, div.progress-bar.hidden {
+  display: none;
+}
+
+.progress-bar {
+  width: 100%;
+  height: 7px;
+  background: #080c2c;
+  border-radius: 4px;
+  position: relative;
+  margin-bottom:14px;
+}
+
+.progress-bar .current-progress {
+  height: 100%;
+  width: 0%;
+  border-radius: 4px;
+  background: #00a6a7;
+}
+
+.progress-bar > .label {
+  display: block;
+  margin-top: 7px;
+  color: #fff;
+  font-weight: 400;
+  font-size: 12px;
+}
+
+.iOS {
+  display: flex;
+}
+
+.iOS .label {
+  text-align: left;
+  min-height: 42px;
+  line-height: 30px;
+  height: 30px;
+  flex-grow: 1;
+}
+
+.iOS .checkbox [type=checkbox] {
+  position: absolute;
+  opacity: 0;
+  z-index: 1;
+}
+
+.iOS .checkbox label,
+.iOS .checkbox label::after,
+.iOS .checkbox label::before {
+  margin: 0;
+  cursor: pointer;
+  vertical-align: middle;
+  box-sizing: border-box;
+  line-height: 30px;
+  height: 30px;
+}
+
+.iOS .checkbox label {
+  position: relative;
+  padding-left: 50px;
+  display: inline-block;
+  z-index: 2;
+  -webkit-tap-highlight-color: transparent;
+  min-height: 42px;
+  font-size: 18px;
+}
+
+.iOS .checkbox label::after,
+.iOS .checkbox label::before {
+  content: "";
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  transition: all 0.15s;
+}
+
+.iOS .checkbox label::before {
+  border-radius: 15px;
+  border: 1px solid rgba(0,0,0,.2);
+  background: #eee;
+  width: 50px;
+  margin-left: 0;
+}
+
+.iOS .checkbox label::after {
+  border-radius: 15px;
+  width: 30px;
+  background: #fff;
+  box-shadow: 0 1px 7px rgba(0,0,0,.3);
+}
+
+.iOS .checkbox [type=checkbox]:not([disabled]):active + label::before {
+  background: #77cacb;
+}
+
+.iOS .checkbox [type=checkbox]:checked + label::before {
+  background-color: #00a6a7;
+  height: 30px;
+  width: 50px;
+  margin: 0;
+}
+
+.iOS .checkbox [type=checkbox]:checked + label::after {
+  margin-left: 20px;
+}
+
+.iOS .checkbox [type=checkbox]:not([disabled]):focus + label::before,
+.iOS input[type=checkbox]:not([disabled]):focus.checkbox + label:before,
+.iOS .checkbox [type=checkbox]:not([disabled]):active + label::before,
+.iOS input[type=checkbox]:not([disabled]):active.checkbox + label:before {
+  box-shadow: inset 0 0 1px 2px rgba(0,0,0,.3);
+}
+
+#fingerprintAuthenticator_checkbox_row {
+  margin-top: 0.5em;
+}
+
+#logsContainer, #paddingContainer {
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
+  display: none;
+}
+
+#paddingContainer {
+  top: 0;
+  left: 0;
+  padding: 10px;
+  position: absolute;
+  z-index: 30645;
+}
+
+#logsContainer {
+  z-index: 30646;
+  background-color: #fff;
+  opacity: 1;
+  border: 0;
+  border-radius: 10px;
+  position: relative;
+}
+
+#logsContainerBackground {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 30644;
+  background-color: #000;
+  opacity: .5;
+  display: none;
+}
+
+#closeLogsContainer {
+  height: 18px;
+  font-size: 26px;
+  font-family: Helvetica;
+  font-weight: 400;
+  display: block;
+  line-height: 20px;
+  float: right;
+  margin-right: 5px;
+  text-align: center;
+}
+
+#loadMoreLogs {
+  width: 140px;
+  margin: 10px auto;
+}
+
+.lastCell, .loadCell {
+  text-align: center;
+  width: 40%;
+  font-weight: 400;
+}
+
+.closeCell {
+  width: 20%;
+}
+
+.lastCell p {
+  margin: 18px;
+}
+
+.closeCell, .lastCell, .loadCell {
+  color: #525559;
+}
+
+.resultCell {
+  text-align: center;
+  padding: 10px 0;
+  height: 100%;
+}
+
+.levelCell {
+  text-align: center;
+  font-weight: 400;
+  color: #525559;
+}
+
+#logsTable {
+  width: 100%;
+  height: 100%;
+}
+
+.logsHeader {
+  float: left;
+}
+
+#resultTextarea {
+  width: 98%;
+  height: 100%;
+  overflow: scroll;
+  word-break: break-all;
+  font-size: 10px;
+  font-family: monospace;
+}
+
+.smallButton {
+  color: #000;
+  font-weight: 800;
+  border: 1px solid #000;
+  border-radius: 5px;
+  padding: 8px;
+  margin: 10px;
+}
+
+.inactive {
+  background-color: rgba(255, 255, 255, 0.25);
+}
+
+.logsLayoutRow {
+  width: 100%;
+  clear: both;
+  overflow: hidden;
+  position: absolute;
+}
+
+.rowBorder {
+  border-top: 2px solid #525559;
+  border-bottom: 2px solid #525559;
+}
+
+#logsRow2 {
+  top: 55px;
+  bottom: 50px;
+}
+
+#logsRow3 {
+  bottom: 0;
+}
+
+.textUnderline {
+  text-decoration: underline;
+}
+
+.disabled {
+  background: rgba(255, 255, 255, 0.25);
+}
+
+.changePasswordText {
+  font-weight: 800;
+  line-height: 30px;
+}
+
+.passwordStrength {
+  padding-bottom: 14px;
+}
+
+.sr-only {
+  position: absolute !important;
+  clip: rect(1px, 1px, 1px, 1px);
+  padding: 0 !important;
+  border: 0 !important;
+  height: 1px !important;
+  width: 1px !important;
+  overflow: hidden;
+}
+
+body:hover .sr-only a, body:hover .sr-only button, body:hover .sr-only input {
+  display: none !important;
+}
+
+.svg-icon {
+  width: 100%;
+}
+
+.logo-container {
+  width: 300px; 
+  margin: 10vh auto 5vh; 
+}
+
+.logo-container svg {
+  max-height: 100% !important;
+}
+
+.logo-sym svg {
+  width: 150px;
+  height: 60px;
+  animation: aFade .4s ease-out both .3s;
+}
+
+.logo-text svg {
+  width: 125px;
+  height: 30px;
+}
+
+#logo-text {
+  stroke: #fff;
+  fill: #fff;
+  stroke-dasharray: 1000;
+  stroke-miterlimit: 20;
+  stroke-linecap: round;
+  animation: aDraw 1s ease-in;
+}
+
+#logo-infinity{
+  display:block;
+  margin:0 auto 14px;
+  width:170px;
+}
+
+/* Safari and MS don't support the draw effect, using CSS workarounds for a smoother experience */
+@media not all and (min-resolution:.001dpcm){ @supports (-webkit-appearance:none) {
+  .logo-container{animation: aFade 1s ease-out} /* Safari detect */
+}}
+@media screen and (min-width: 0\0) and (-webkit-min-device-pixel-ratio: 0.75), screen and (min-width: 0\0) and (min-resolution: 72dpi) {
+  #logo-text, .content-container > #login > *{animation: none !important} /* IE 9+ detect */
+}
+@supports (-ms-ime-align: auto) {
+  #logo-text {animation: aFade 1s ease-out} /* MS Edge detect */
+}
